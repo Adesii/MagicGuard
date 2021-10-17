@@ -76,12 +76,14 @@ namespace MagicGuard {
 			var trans = GetAttachment("Particle_End").Value;
 
 			var traceresult = Trace.Ray(trans.Position + trans.Rotation.Forward, trans.Position + trans.Rotation.Up * 100000f).Ignore(this).Radius(10f).WorldAndEntities().Run();
+			var beam = Particles.Create("particles/megumin/staff_beam.vpcf", trans.Position);
+			beam.SetPosition(1, traceresult.EndPos);
+
 			if(traceresult.Hit) {
 				var p = Particles.Create("particles/megumin/nuke/nuke_explosion.vpcf", traceresult.EndPos);
 				p.SetPosition(1, traceresult.EndPos);
 				p.SetPosition(2, traceresult.EndPos);
-				var beam = Particles.Create("particles/megumin/staff_beam.vpcf", trans.Position);
-				beam.SetPosition(1, traceresult.EndPos);
+
 				Sound.FromWorld("explosionsoundeffect", traceresult.EndPos);
 				await GameTask.DelayRealtimeSeconds(0.5f);
 				var radius = 500f;

@@ -158,6 +158,9 @@ namespace MagicGuard {
 
 			SetAnimBool("b_vr", true);
 			SetBodyGroup(3, 1);
+			if(Input.VR.LeftHand.ButtonA.WasPressed && IsClient) {
+				spawnstaff();
+			}
 
 			HandleVR();
 		}
