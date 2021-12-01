@@ -90,8 +90,6 @@ namespace MagicGuard {
 				var sourcePos = traceresult.EndPos;
 				var overlaps = Physics.GetEntitiesInSphere(sourcePos, radius);
 
-				if(debug_prop_explosion)
-					DebugOverlay.Sphere(sourcePos, radius, Color.Orange, true, 5);
 
 				foreach(var overlap in overlaps) {
 					if(overlap is not ModelEntity ent || !ent.IsValid())
@@ -104,8 +102,6 @@ namespace MagicGuard {
 
 
 
-					if(debug_prop_explosion)
-						DebugOverlay.Line(sourcePos, targetPos, 5, true);
 
 					var forceDir = (targetPos - sourcePos).Normal;
 
